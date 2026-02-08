@@ -267,7 +267,7 @@ export type SpecialityCreateInput = {
   description?: string | null
   icon?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isDeleted?: boolean
   deleatedAt?: Date | string | null
 }
@@ -278,7 +278,7 @@ export type SpecialityUncheckedCreateInput = {
   description?: string | null
   icon?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isDeleted?: boolean
   deleatedAt?: Date | string | null
 }
@@ -311,7 +311,7 @@ export type SpecialityCreateManyInput = {
   description?: string | null
   icon?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isDeleted?: boolean
   deleatedAt?: Date | string | null
 }
@@ -369,26 +369,6 @@ export type SpecialityMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deleatedAt?: Prisma.SortOrder
-}
-
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
 }
 
 
