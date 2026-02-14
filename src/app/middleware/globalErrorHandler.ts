@@ -9,7 +9,6 @@ import AppError from "../errorHelpers/AppError";
 import { handleZodError } from "../errorHelpers/handleZodError";
 import { TErrorResponse, TErrorSources } from "../interfaces/error.interface";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const globalErrorHandler = (
   err: any,
   req: Request,
@@ -24,25 +23,6 @@ export const globalErrorHandler = (
   let statusCode: number = status.INTERNAL_SERVER_ERROR;
   let message: string = "Internal Server Error";
   let stack: string | undefined = undefined;
-
-  //Zod Error Patttern
-  /*
-     error.issues; 
-    /* [
-      {
-        expected: 'string',
-        code: 'invalid_type',
-        path: [ 'username' , 'password' ], => username password
-        message: 'Invalid input: expected string'
-      },
-      {
-        expected: 'number',
-        code: 'invalid_type',
-        path: [ 'xp' ],
-        message: 'Invalid input: expected number'
-      }
-    ] 
-    */
 
   if (err instanceof z.ZodError) {
     const simplifiedError = handleZodError(err);

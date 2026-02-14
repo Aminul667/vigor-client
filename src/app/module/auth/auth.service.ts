@@ -120,6 +120,7 @@ const loginUser = async (payload: ILoginUserPayload) => {
     refreshToken,
   };
 };
+
 export const AuthService = {
   registerPatient,
   loginUser,
