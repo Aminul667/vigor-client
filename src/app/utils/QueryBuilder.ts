@@ -10,7 +10,6 @@ import {
   PrismaWhereConditions,
 } from "../interfaces/query.interface";
 
-// T = Model Type
 export class QueryBuilder<
   T,
   TWhereInput = Record<string, unknown>,
