@@ -1,18 +1,12 @@
-import status from "http-status";
-import { Doctor, Prisma } from "../../../generated/prisma/client";
-import { UserStatus } from "../../../generated/prisma/enums";
+import { Doctor, Prisma, UserStatus } from "../../../generated/prisma/client";
 import AppError from "../../errorHelpers/AppError";
 import { IQueryParams } from "../../interfaces/query.interface";
 import { prisma } from "../../lib/prisma";
 import { QueryBuilder } from "../../utils/QueryBuilder";
-import {
-  doctorFilterableFields,
-  doctorIncludeConfig,
-  doctorSearchableFields,
-} from "./doctor.constant";
+import { doctorFilterableFields, doctorIncludeConfig, doctorSearchableFields } from "./doctor.constant";
 import { IUpdateDoctorPayload } from "./doctor.interface";
+import status from "http-status";
 
-// /doctors?specialty=cardiology&include=doctorSchedules,appointments
 const getAllDoctors = async (query: IQueryParams) => {
   const queryBuilder = new QueryBuilder<
     Doctor,
