@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { toNodeHandler } from "better-auth/node";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -9,6 +10,8 @@ import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
 import { IndexRoutes } from "./app/routes";
 import { PaymentController } from "./app/module/payment/payment.controller";
+import cron from "node-cron";
+import { AppointmentService } from "./app/module/appointment/appointment.service";
 
 const app: Application = express();
 
@@ -38,6 +41,18 @@ app.use("/api/auth", toNodeHandler(auth));
 
 // Enable URL-encoded form data parsing
 app.use(express.urlencoded({ extended: true }));
+
+cron.schedule("*/25 * * * *", async () => {
+  try {
+    console.log("Running cron job to cancel unpaid appointments...");
+    await AppointmentService.cancelUnpaidAppointments();
+  } catch (error: any) {
+    console.error(
+      "Error occurred while canceling unpaid appointments:",
+      error.message,
+    );
+  }
+});
 
 // Middleware to parse JSON bodies
 app.use(express.json());

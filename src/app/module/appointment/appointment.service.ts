@@ -13,7 +13,6 @@ import { IBookAppointmentPayload } from "./appointment.interface";
 import { v7 as uuidv7 } from "uuid";
 import status from "http-status";
 
-// Pay Now Book Appointment
 const bookAppointment = async (
   payload: IBookAppointmentPayload,
   user: IRequestUser,
@@ -164,6 +163,11 @@ const getMyAppointments = async (user: IRequestUser) => {
 
   return appointments;
 };
+
+// 1. Completed Or Cancelled Appointments should not be allowed to update status
+// 2. Doctors can only update Appoinment status from schedule to inprogress or inprogress to complted or schedule to cancelled.
+// 3. Patients can only cancel the scheduled appointment if it scheduled not completed or cancelled or inprogress.
+// 4. Admin and Super admin can update to any status.
 
 const changeAppointmentStatus = async (
   appointmentId: string,
